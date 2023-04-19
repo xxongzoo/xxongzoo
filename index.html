@@ -12,45 +12,63 @@
    
 body {background-color:#162626;}
 
-#bac {max-width: 100%; height: auto;
-       position: relative; 
-        z-index: 1; }      
-        #back {max-width: 100%; height: auto;
-                position: absolute;
-                top: 1%;
-                left:0%; 
-                width: 100%; 
-                z-index: 2; }      
+#back {max-width: 100%; height: auto;
+       position: absolute;
+       top: 1%;
+       left:0%; 
+       width: 100%; 
+       z-index: 2; }      
+
+       .hepari {
+  position: relative;
+  height: 500px; 
+}
+
+.hepari img {
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  opacity: 0;
+  animation: slide-in 1s forwards;
+
+}
+
+@keyframes slide-in {
+  from {
+    transform: translateX(-100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
 
 
-#hepar {position: fixed; 
-        top: 93%; 
-        left: 20%; 
-        z-index: 1;
-        width: 30%; 
-        height: auto;}
-
-        #hepar {max-width: 30%; height: auto;
-                position: absolute;
-                top: 93%;
-                left: 1%; 
-                width: 30%; 
-                z-index: 2; }
+.hepari::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  background-color: #f2f2f2;
+}
 
 
-        #hepari {max-width: 30%; height: auto;
-                position: absolute;
-                top: 90%;
-                left: 15%; 
-                width: 30%; 
-                z-index: 2; }
 
 
 </style>
 </head>
 <body>
    <img src="img/back.jpg" id="back";>
-   <img src="img/me1.png" id="hepari";>
-
+  
+<div class="hepari"> 
+   <a href="me.html">
+        <img src="img/hepari.png" id="hepari">
+      </a>
+</div>
 </body>
 </html>
+
