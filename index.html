@@ -4,11 +4,6 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 <title>Reanon For Everything</title>
 <style>
-@media (max-width: 767px) {}
- 
-@media (min-width: 768px) and (max-width: 1023px) {}
-
-@media (min-width: 1024px) {}
    
 body {background-color:#162626;}
 
@@ -19,19 +14,24 @@ body {background-color:#162626;}
        width: 100%; 
        z-index: 2; }      
 
-       .hepari {
-  position: relative;
-  height: 500px; 
-}
+#hepari {      max-width: 50%;
+        height: auto;
+        position: absolute;
+        top: 104.04%;
+        left: 3.1%;
+        width: 41.85%;
+        z-index: 2;
+        transform: translateX(-100%);
+        opacity: 0;
+        transition: transform 1s ease-out, opacity 1s ease-out;
+      }      
 
-.hepari img {
-  position: absolute;
-  top: 0;
-  left: -100%;
-  width: 100%;
-  opacity: 0;
-  animation: slide-in 1s forwards;
-
+.hepari img {position: absolute;
+             top: 50%;
+             left: 3.1%;
+             width: 41.85%; 
+             opacity: 0;
+             animation: slide-in 1s forwards;
 }
 
 @keyframes slide-in {
@@ -46,29 +46,33 @@ body {background-color:#162626;}
 }
 
 
-.hepari::before {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: 0;
-  height: 100%;
-  width: 100%;
-  background-color: #f2f2f2;
-}
-
-
-
-
 </style>
 </head>
 <body>
    <img src="img/back.jpg" id="back";>
   
-<div class="hepari"> 
+<div class="scroll-container"> 
    <a href="me.html">
         <img src="img/hepari.png" id="hepari">
       </a>
 </div>
+
+<script src="https://cdn.jsdelivr.net/npm/locomotive-scroll/dist/locomotive-scroll.min.js"></script>
+<script>
+  const scroll = new LocomotiveScroll({
+    el: document.querySelector(".scroll-container"),
+    smooth: true,
+  });
+
+  scroll.on("scroll", function (obj) {
+    const element = document.querySelector("#hepari");
+
+    const bounding = element.getBoundingClientRect();
+    if (bounding.top < window.innerHeight) {
+      element.style.transform = "translateX(0)";
+      element.style.opacity = 1;
+    }
+  });
+</script>
 </body>
 </html>
-
