@@ -13,6 +13,12 @@ body {background-color:#162626;}
       left:0%; 
       width:100%; 
       z-index:2; }    
+#ev {
+  display: block;
+        margin: 0 auto;
+        width: 70%;
+        height: auto;
+      }
 #tr {max-width: 100%; height: auto;
        position: absolute;
        top: 4%;
@@ -43,7 +49,7 @@ body {background-color:#162626;}
   position: absolute;
   top: 40%;
   left: 6%; 
-  width: 41.85%; 
+  width: 45.85%; 
   z-index: 3;
   animation: slide-in-fox 2s forwards;}
 .fox img { position: absolute;
@@ -69,6 +75,7 @@ body {background-color:#162626;}
   animation: slide-in 1s forwards;}
 
 @keyframes slide-in-hepari { from { transform: translateX(-100%);opacity: 0;}}
+@keyframes slide-in-ina1 { from { transform: translateX(-100%);opacity: 0;}}
 @keyframes slide-in-fox {from {transform: translateX(100%);opacity: 0; }}
 
 #f1 {max-width: 50%;
@@ -102,10 +109,62 @@ body {background-color:#162626;}
   transition: opacity 3s;}
   #gao.fade-in {opacity: 1; }
 
+#hema {max-width: 50%;
+  height: auto;
+  position: absolute;
+  top: 210%;
+  left: 85%;
+  width: 18%;
+  z-index: 3;opacity: 0; 
+  transition: opacity 3s;}
+  #hema.fade-in {opacity: 1; }
+
+  #ina1 {max-width: 50%;
+  height: auto;
+  position: absolute;
+  top: 235%;
+  left: -1.5%;
+  width: 44.85%;
+  z-index: 4;
+}
+
+  #ina2 {max-width: 50%;
+  height: auto;
+  position: absolute;
+  top: 236%;
+  left: 37%;
+  width: 28%;
+  z-index: 4;opacity: 0; 
+  transition: opacity 3s;}
+  #ina2.fade-in {opacity: 1;}
+
+
+#ina3 {max-width: 50%;
+  height: auto;
+  position: absolute;
+  top: 230%;
+  left: 56.6%; 
+  width: 46%; 
+  z-index: 3;}
+
+#why {  position: absolute;
+  bottom: 0;
+  display: block;
+  margin: 0 auto;
+  width: 41.5%;
+  top: 230%;
+  z-index: 4;
+  height: auto;
+  left: 54%;
+  transform: translateX(-50%);
+}}
+
+
 </style>
 </head>
 <body>
    <img src="img/sea.png" id="sea";>
+   <img src="img/ev.png" id="ev";>
    <img src="img/tr.png" id="tr";>
    <img src="img/r1.png" id="r1";> 
    <img src="img/r2.png" id="r2";>
@@ -179,5 +238,46 @@ body {background-color:#162626;}
  });
 </script>
 
+<img src="img/hema.png" id="hema">
+<script>
+ window.addEventListener('scroll', () => {
+   const f1 = document.querySelector('#hema');
+   const { top, bottom } = f1.getBoundingClientRect();
+   const { innerHeight } = window;
+
+   if (bottom > 0 && top < innerHeight) {
+     f1.classList.add('fade-in');
+   } else {
+     f1.classList.remove('fade-in');
+   }
+ });
+</script>
+
+<div class="scroll-container2"> 
+       <img src="img/ina1.png" id="ina1">
+     </div>
+
+     
+
+<div class="ina2"> 
+  <a href="book.html">
+       <img src="img/ina2.png" id="ina2">
+     </a></div>
+     <script>
+      window.addEventListener('scroll', () => {
+        const f1 = document.querySelector('#ina2');
+        const { top, bottom } = f1.getBoundingClientRect();
+        const { innerHeight } = window;
+     
+        if (bottom > 0 && top < innerHeight) {
+          f1.classList.add('fade-in');
+        } else {
+          f1.classList.remove('fade-in');
+        }
+      });
+     </script>
+
+  <img src="img/ina3.png"id="ina3";>
+  <img src="img/why.png"id="why";>
 </body>
 </html>
