@@ -1,0 +1,7 @@
+body{background-color: #f1ebc8;
+font-family: 'Ddobakddobak';}
+@font-face {
+    font-family: 'Ddobakddobak';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/naverfont_03@1.0/Ddobakddobak.woff') format('woff');
+
+}
