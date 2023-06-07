@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./css/me.css">
+    <title>Am I...</title>
+
+
+</head>
+<body>
+   
+    <img src="img/back2.png" id="back";>
+    <div class="gom">
+        <img src="img/gom.png"></div>
+
+    <img class="hosi" src="img/hosi.GIF">
+
+
+        <div id="container">
+            <img class="photo" src="img/m2.png"  style="left: 2%; top: 142%; width: 100px;">
+            <img class="photo" src="img/m3.png" style="left: 130px; top: 4440px; width: 100px;">
+            <img class="photo" src="img/m4.png" style="left: 170px; top: 177%; width: 150px;">
+            <img class="photo" src="img/m5.png" style="left: 32%; top: 90%; width: 39%;">
+            <img class="photo" src="img/m9.png"style="left: 275px; top: 2495px; width: 60px;">
+            <img class="photo" src="img/monster1.png" style="left: 23px; top: 2686px; width: 150px;" >
+            <img class="photo" src="img/m6.gif" style="left: 20%; top: 196%; width: 50%;" >
+            <img class="photo" src="img/m7.png" style="left: 76%; top: 122%; width: 24%;">
+            <img class="photo" src="img/fll.png" style="left: 30%; top: 74%; width: 90px;">
+
+
+            <!-- 필요한 만큼 사진을 추가할 수 있습니다 -->
+          </div>
+
+  <audio id="sound-effect" src="mp3/bbong.mp3"></audio>
+
+       
+          <script>
+            // JavaScript 코드를 여기에 작성합니다
+            const container = document.getElementById('container');
+            const photos = document.getElementsByClassName('photo');
+            const soundEffect = document.getElementById('sound-effect');
+        
+            Array.from(photos).forEach(photo => {
+              photo.addEventListener('mousedown', startDragging);
+              photo.addEventListener('mouseup', stopDragging);
+              photo.addEventListener('mousemove', dragPhoto);
+              photo.addEventListener('click', handlePhotoClick);
+            });
+        
+            let activePhoto = null;
+            let offset = { x: 0, y: 0 };
+        
+            function startDragging(event) {
+              activePhoto = event.target;
+              const rect = activePhoto.getBoundingClientRect();
+              offset.x = event.clientX - rect.left;
+              offset.y = event.clientY - rect.top;
+            }
+        
+            function stopDragging() {
+              activePhoto = null;
+            }
+        
+            function dragPhoto(event) {
+              if (activePhoto) {
+                event.preventDefault();
+        
+                const containerRect = container.getBoundingClientRect();
+                const x = event.clientX - containerRect.left - offset.x;
+                const y = event.clientY - containerRect.top - offset.y;
+        
+                activePhoto.style.left = `${x}px`;
+                activePhoto.style.top = `${y}px`;
+              }
+            }
+        
+            function handlePhotoClick(event) {
+              const clickedPhoto = event.target;
+              clickedPhoto.style.display = 'none';
+        
+              const remainingPhotos = Array.from(photos).filter(photo => photo.style.display !== 'none');
+              if (remainingPhotos.length === 0) {
+                alert('모든 괴물을 찾았습니다! 축하합니다!');
+              }
+        
+              playSoundEffect();
+            }
+        
+            function playSoundEffect() {
+              soundEffect.currentTime = 0;
+              soundEffect.play();
+            }
+          </script>
+</body>
+</html>
