@@ -1,0 +1,53 @@
+body {background-color:#0f1225;}
+#back {
+    max-width: 100%;
+    height: auto;
+    position: absolute;
+    top: 0%;
+    left:0%; 
+    width:100%; 
+    z-index:2;
+}
+.gom {
+    max-width: 50%;
+    height: auto;
+    position: absolute;
+    top: 17%;
+    left: 8%; 
+    width: 100%; 
+    z-index: 3;
+    animation: slide-in-gom 2s forwards;
+}
+.gom img { 
+    position: absolute;
+    top: 30%;
+    left: -16%;
+    width: 200%;
+}
+
+@keyframes slide-in-gom {from {transform: translateX(100%);opacity: 0; }}
+
+.hosi {
+  max-width: 50%;
+height: auto;
+position: absolute;
+top: 128%;
+left: 13%;
+width: 38%;
+z-index: 3;
+}
+
+
+
+#container {
+  position: relative;
+  width: 100%;
+  height: 1800px;
+  margin: 10px; 
+  z-index: 5;
+}
+
+.photo {
+  position: absolute;
+  cursor: pointer; 
+}
