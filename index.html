@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Document</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
+
+</head>
+  <style>
+   
+    body {
+        background: radial-gradient(#04080d, #000);
+        overflow: hidden;
+        border-radius: 20px;
+        margin: 4%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+                    }
+
+.stars {
+      width: 2px;
+      height: 2px;
+      background: #fff;
+      position: absolute;
+      animation: twinkling 1s infinite;
+    }
+
+    @keyframes twinkling {
+      0% { opacity: 1; }
+      100% { opacity: 0; }
+    }
+
+    .shooting-star {
+      position: absolute;
+      /* 추가적인 스타일링을 위해 필요한 경우 아래에 작성하세요 */
+    }
+    .game-container {
+      position: relative;
+      width: 100%;
+      height: 1300px;
+      overflow: hidden;
+      text-align: center;
+      color: white;
+    }
+
+    .game-image {
+      position: absolute;
+      width: 200px;
+      height: 200px;
+      cursor: pointer;
+      transition: transform 0.3s, width 0.3s, height 0.3s, opacity 0.3s;
+      margin-top: 5%;
+
+    }
+
+    
+
+    .game-image.clicked {
+      transform: scale(1.5) rotate(360deg);
+      opacity: 0;
+      pointer-events: none;
+    }
+
+    .reset-button {
+    width: 50%;
+    height: 100px;
+    margin-top: 60px;
+    font-size: 24px;
+    padding: 10px 20px;
+  }
+
+
+  </style>
+</head>
+<body>
+  <div class="game-container">
+    <img class="game-image" src="ca/ca1.png" alt="사진 1" />
+    <img class="game-image" src="ca/ca2.png" alt="사진 1" />
+    <img class="game-image" src="ca/ca3.GIF" alt="사진 1" />
+    <img class="game-image" src="ca/ca4.PNG" alt="사진 4" />
+    <img class="game-image" src="ca/ca5.png" alt="사진 5" />
+    <img class="game-image" src="ca/ca6.png" alt="사진 6" />
+    <img class="game-image" src="ca/ca7.png" alt="사진 7" />
+    <img class="game-image" src="ca/ca8.png" alt="사진 8" />
+    <img class="game-image" src="ca/ca9.png" alt="사진 9" />
+    <img class="game-image" src="ca/ca10.png" alt="사진 10" />
+    <img class="game-image" src="ca/ca11.png" alt="사진 11" />
+    <img class="game-image" src="ca/ca12.png" alt="사진 12" />
+    <img class="game-image" src="ca/ca13.png" alt="사진 13" />
+    <img class="game-image trap-image" src="ca/trap.png" alt="함정 이미지" />
+    <img class="game-image trap-image" src="ca/trap.png" alt="함정 이미지" />
+    <img class="game-image trap-image" src="ca/trap.png" alt="함정 이미지" />
+    <img class="game-image trap-image" src="ca/trap.png" alt="함정 이미지" />
+
+
+    
+  </div>
+
+  <button type="button" class="btn btn-primary reset-button" onclick="resetGame()">다시하기</button>
+
+
+  <script>
+    var totalImages = document.querySelectorAll('.game-image').length;
+    var gameContainer = document.querySelector('.game-container');
+    var originalImages = gameContainer.innerHTML;
+
+    // 초기 게임 상태로 초기화합니다.
+    function resetGame() {
+      gameContainer.innerHTML = originalImages;
+      moveImages();
+    }
+
+    // 이미지들을 랜덤한 위치로 이동시킵니다.
+    function moveImages() {
+      var container = document.querySelector('.game-container');
+      var images = document.querySelectorAll('.game-image');
+
+      images.forEach(function(image) {
+        var x = Math.random() * (container.offsetWidth - image.offsetWidth);
+        var y = Math.random() * (container.offsetHeight - image.offsetHeight);
+        image.style.left = x + 'px';
+        image.style.top = y + 'px';
+      });
+
+      // 이미지들을 일정 시간마다 이동시킵니다.
+      setTimeout(moveImages, 2000);
+    }
+
+    // 이미지를 클릭하여 애니메이션 효과를 적용하거나 사라지게 합니다.
+    function animateImage(event) {
+      var target = event.target;
+
+      if (target.classList.contains('game-image')) {
+        if (target.classList.contains('trap-image')) {
+          gameContainer.innerHTML = '<p><img src="ca/lose.png" alt="패배" /></p>';
+        } else {
+          target.classList.toggle('clicked');
+        }
+      }
+
+      if (document.querySelectorAll('.game-image.clicked').length === totalImages - 4) {
+        gameContainer.innerHTML = '<p><img src="ca/ss.png" alt="승리" /></p>';
+      }
+    }
+
+    // 페이지 로드 시 이미지들을 이동시킵니다.
+    window.addEventListener('load', function() {
+      resetGame();
+    });
+
+    // 이미지 클릭 이벤트를 처리합니다.
+    gameContainer.addEventListener('click', animateImage);
+  </script>
+    <script>
+      // 별을 생성합니다
+      function createStars() {
+        var container = document.querySelector('body');
+        var width = window.innerWidth;
+        var height = window.innerHeight;
+  
+        for (var i = 0; i < 200; i++) {
+          var star = document.createElement('div');
+          star.className = 'stars';
+          star.style.left = Math.random() * width + 'px';
+          star.style.top = Math.random() * height + 'px';
+          container.appendChild(star);
+        }
+      }
+  
+      // 페이지 로드 시 별을 생성합니다
+      window.addEventListener('load', function() {
+        createStars();
+      });
+    </script>
+</body>
+</html>
